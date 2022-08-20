@@ -144,4 +144,124 @@ s2.lower_bound(40) :
 40
 s2.upper_bound(40) : 
 60
+ 
+                                                                    UNORDERED SET
+                                                                    
+                                                                    
 
+An unordered_set is implemented using a hash table where keys are hashed into indices of a hash table so that the insertion is always randomized. 
+ All operations on the unordered_set takes constant time O(1) on an average which can go up to linear time O(n) in worst case which depends on the internally used hash function, but practically they perform very well and generally provide a constant time lookup operation. 
+The unordered_set can contain key of any type – predefined or user-defined data structure but when we define the key of type user define the type, we need to specify our comparison function according to which keys will be compared.
+
+The Unordered_set allows only unique keys, for duplicate keys unordered_multiset should be used. 
+Example of declaration, find, insert and iteration in unordered_set is given below :
+
+#include <bits/stdc++.h>
+using namespace std;
+  
+int main()
+{
+    // declaring set for storing string data-type
+    unordered_set <string> stringSet ;
+  
+    // inserting various string, same string will be stored
+    // once in set
+  
+    stringSet.insert("code") ;
+    stringSet.insert("in") ;
+    stringSet.insert("c++") ;
+    stringSet.insert("is") ;
+    stringSet.insert("fast") ;
+  
+    string key = "slow" ;
+  
+    //  find returns end iterator if key is not found,
+    //  else it returns iterator to that key
+  
+    if (stringSet.find(key) == stringSet.end())
+        cout << key << " not found" << endl << endl ;
+    else
+        cout << "Found " << key << endl << endl ;
+  
+    key = "c++";
+    if (stringSet.find(key) == stringSet.end())
+        cout << key << " not found\n" ;
+    else
+        cout << "Found " << key << endl ;
+  
+    // now iterating over whole set and printing its
+    // content
+    cout << "\nAll elements : ";
+    unordered_set<string> :: iterator itr;
+    for (itr = stringSet.begin(); itr != stringSet.end(); itr++)
+        cout << (*itr) << endl;
+}
+Output: 
+
+slow not found
+
+Found c++
+
+All elements : 
+is
+fast
+c++
+in
+code
+
+
+find, insert and erase take constant amount of time on average. 
+ The find() function returns an iterator to end() if key is not there in set,otherwise an iterator to the key position is returned. 
+ The iterator works as a pointer to the key values so that we can get the key by dereferencing them using * operator. 
+ 
+ 
+A practical problem based on unordered_set – Given an array(list) of integers, find all the duplicates among them. 
+
+Input  : arr[] = {1, 5, 2, 1, 4, 3, 1, 7, 2, 8, 9, 5}
+Output : Duplicate item are : 5 2 1 
+ 
+ #include <bits/stdc++.h>
+using namespace std;
+  
+// Print duplicates in arr[0..n-1] using unordered_set
+void printDuplicates(int arr[], int n)
+{
+    // declaring unordered sets for checking and storing
+    // duplicates
+    unordered_set<int> intSet;
+    unordered_set<int> duplicate;
+  
+    // looping through array elements
+    for (int i = 0; i < n; i++)
+    {
+        // if element is not there then insert that
+        if (intSet.find(arr[i]) == intSet.end())
+            intSet.insert(arr[i]);
+  
+        // if element is already there then insert into
+        // duplicate set
+        else
+            duplicate.insert(arr[i]);
+    }
+  
+    // printing the result
+    cout << "Duplicate item are : ";
+    unordered_set<int> :: iterator itr;
+  
+    // iterator itr loops from begin() till end()
+    for (itr = duplicate.begin(); itr != duplicate.end(); itr++)
+        cout << *itr << " ";
+}
+  
+// Driver code
+int main()
+{
+    int arr[] = {1, 5, 2, 1, 4, 3, 1, 7, 2, 8, 9, 5};
+    int n = sizeof(arr) / sizeof(int);
+  
+    printDuplicates(arr, n);
+    return 0;
+}
+Output : 
+
+Duplicate item are : 5 1 2 
