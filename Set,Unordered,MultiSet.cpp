@@ -150,8 +150,11 @@ s2.upper_bound(40) :
                                                                     
 
 An unordered_set is implemented using a hash table where keys are hashed into indices of a hash table so that the insertion is always randomized. 
- All operations on the unordered_set takes constant time O(1) on an average which can go up to linear time O(n) in worst case which depends on the internally used hash function, but practically they perform very well and generally provide a constant time lookup operation. 
-The unordered_set can contain key of any type – predefined or user-defined data structure but when we define the key of type user define the type, we need to specify our comparison function according to which keys will be compared.
+All operations on the unordered_set takes constant time O(1) on an average which can go up to linear time O(n)in worst case which depends on the internally used hash 
+function, but practically they perform very well and generally provide a constant time lookup operation. 
+ 
+The unordered_set can contain key of any type – predefined or user-defined data structure but when we define the key of type user define the type, 
+we need to specify our comparison function according to which keys will be compared.
 
 The Unordered_set allows only unique keys, for duplicate keys unordered_multiset should be used. 
 Example of declaration, find, insert and iteration in unordered_set is given below :
@@ -265,3 +268,177 @@ int main()
 Output : 
 
 Duplicate item are : 5 1 2 
+
+ 
+ 
+                                                                    MULTISET
+
+Multisets are a type of associative containers similar to the set, with the exception that multiple elements can have the same values. Some Basic Functions associated with multiset: 
+
+begin() – Returns an iterator to the first element in the multiset –>  O(1)
+end() – Returns an iterator to the theoretical element that follows the last element in the multiset –> O(1)
+size() – Returns the number of elements in the multiset –> O(1)
+max_size() – Returns the maximum number of elements that the multiset can hold –> O(1)
+empty() – Returns whether the multiset is empty –> O(1)
+insert (x) – Inserts the element x in the multiset –> O(log n)
+clear () – Removes all the elements from the multiset –> O(n)
+ erase(x) – Removes all the occurrences of x –> O(log n)
+ 
+ Implementation: 
+
+CPP
+// CPP Program to demonstrate the
+// implementation of multiset
+#include <iostream>
+#include <iterator>
+#include <set>
+ 
+using namespace std;
+ 
+int main()
+{
+    // empty multiset container
+    multiset<int, greater<int> > gquiz1;
+ 
+    // insert elements in random order
+    gquiz1.insert(40);
+    gquiz1.insert(30);
+    gquiz1.insert(60);
+    gquiz1.insert(20);
+    gquiz1.insert(50);
+ 
+    // 50 will be added again to
+    // the multiset unlike set
+    gquiz1.insert(50);
+    gquiz1.insert(10);
+ 
+    // printing multiset gquiz1
+    multiset<int, greater<int> >::iterator itr;
+    cout << "\nThe multiset gquiz1 is : \n";
+    for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr) {
+        cout << *itr << " ";
+    }
+    cout << endl;
+ 
+    // assigning the elements from gquiz1 to gquiz2
+    multiset<int> gquiz2(gquiz1.begin(), gquiz1.end());
+ 
+    // print all elements of the multiset gquiz2
+    cout << "\nThe multiset gquiz2 \n"
+            "after assign from gquiz1 is : \n";
+    for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {
+        cout << *itr << " ";
+    }
+    cout << endl;
+ 
+    // remove all elements up to element
+    // with value 30 in gquiz2
+    cout << "\ngquiz2 after removal \n"
+            "of elements less than 30 : \n";
+    gquiz2.erase(gquiz2.begin(), gquiz2.find(30));
+    for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {
+        cout << *itr << " ";
+    }
+ 
+    // remove all elements with value 50 in gquiz2
+    int num;
+    num = gquiz2.erase(50);
+    cout << "\ngquiz2.erase(50) : \n";
+    cout << num << " removed \n";
+    for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {
+        cout << *itr << " ";
+    }
+ 
+    cout << endl;
+ 
+    // lower bound and upper bound for multiset gquiz1
+    cout << "\ngquiz1.lower_bound(40) : \n"
+         << *gquiz1.lower_bound(40) << endl;
+    cout << "gquiz1.upper_bound(40) : \n"
+         << *gquiz1.upper_bound(40) << endl;
+ 
+    // lower bound and upper bound for multiset gquiz2
+    cout << "gquiz2.lower_bound(40) : \n"
+         << *gquiz2.lower_bound(40) << endl;
+    cout << "gquiz2.upper_bound(40) : \n"
+         << *gquiz2.upper_bound(40) << endl;
+ 
+    return 0;
+}
+Output
+
+The multiset gquiz1 is : 
+60 50 50 40 30 20 10 
+
+The multiset gquiz2 
+after assign from gquiz1 is : 
+10 20 30 40 50 50 60 
+
+gquiz2 after removal 
+of elements less than 30 : 
+30 40 50 50 60 
+gquiz2.erase(50) : 
+2 removed 
+30 40 60 
+
+gquiz1.lower_bound(40) : 
+40
+gquiz1.upper_bound(40) : 
+30
+gquiz2.lower_bound(40) : 
+40
+gquiz2.upper_bound(40) : 
+60
+ 
+  Removing Element From Multiset Which Have Same Value:
+
+a.erase() – Remove all instances of element from multiset having the same value
+a.erase(a.find()) – Remove only one instance of element from multiset having same value
+The time complexities for doing various operations on Multisets are –
+
+Insertion of Elements- O(log N)
+Accessing Elements – O(log N)
+Deleting Elements- O(log N)
+ 
+ // CPP Code to remove an element from multiset which have
+// same value
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    multiset<int> a;
+    a.insert(10);
+    a.insert(10);
+    a.insert(10);
+ 
+    // it will give output 3
+    cout << a.count(10) << endl;
+ 
+    // removing single instance from multiset
+ 
+    // it will remove only one value of
+    // 10 from multiset
+    a.erase(a.find(10));
+ 
+    // it will give output 2
+    cout << a.count(10) << endl;
+ 
+    // removing all instance of element from multiset
+    // it will remove all instance of value 10
+    a.erase(10);
+ 
+    // it will give output 0 because all
+    // instance of value is removed from
+    // multiset
+    cout << a.count(10) << endl;
+ 
+    return 0;
+}
+
+Output
+3
+2
+0
+ 
+ 
