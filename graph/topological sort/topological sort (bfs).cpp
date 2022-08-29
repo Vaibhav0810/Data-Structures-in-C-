@@ -9,8 +9,8 @@
 	    vector<int>ans;
 	    
 	    for(int i=0;i<V;i++){ // ik indeg vector bna rhe h 
-	        for(auto it:adj[i]){
-	            
+	        for(auto it:adj[i]){  // auto loop mei index ni hota its an iterator like tum index pr jaakr cout ni krte tum elements pr jaa rhe ho direct so agr tu
+			// cout <<it krdega to direct vo element print hoga aur for loop ke case mei ans[i] aise krega to element print hoga	            
 	           indeg[it]++; // iska mtlb agr 0 h 1 ki adj node mei to 0 ki deg++
 	        }
 	    }
