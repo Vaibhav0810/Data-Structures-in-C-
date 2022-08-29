@@ -1,3 +1,8 @@
+// in this we are assuming src to be 0 vrna Q mei given hoga
+// isme ik graph dia h unit weights ka to hme ik src se baaki sari nodes ka min dist store krna h
+
+// isme phle ik dist vector bnakr unme int max daal lia hmne
+// fir check kr rhe h dist[node]+1 < dist[it] se to push ni to phle ka dist hi rhendo
 #include <bits/stdc++.h>
 using namespace std;
 class Solution
@@ -38,7 +43,7 @@ public:
 
 
 };
-
+// input
 int
 main ()
 {
