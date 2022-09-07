@@ -47,3 +47,48 @@ public:
         }
         return sum;
     }
+
+							//OPTIMISED USING PQ
+
+// Expected Time Complexity: O(ElogV).
+//Expected Auxiliary Space: O(V^2).
+
+ int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        // code here
+        
+        vector<int>weightOfEdges(V,INT_MAX);
+        vector<bool>visited(V,false);
+        vector<int>parent(V,-1);
+        
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        
+        weightOfEdges[0]=0;
+        parent[0]=-1;
+        pq.push({0, 0}); 
+        
+        while(!pq.empty()){
+            int u=pq.top().second;
+            pq.pop();
+            visited[u]=true;
+            
+            
+            
+            for(auto it:adj[u]){
+                int weight=it[1];
+                int node=it[0];
+                if(visited[node]==false && weight<weightOfEdges[node]){
+                    
+                    parent[node]=u;
+                    weightOfEdges[node]=weight;
+                    pq.push({weightOfEdges[node],node});
+                    
+                }
+            }
+            
+        }
+        int sum=0;
+        for(int i=0;i<V;i++){
+            sum=sum+weightOfEdges[i];
+        }
+       
