@@ -14,3 +14,9 @@ document.getElementsById("abc").innerText=" Hey ";
 it will ignore last space and cout Hey
 if we want to have last space we can use .textContent
 
+
+--------------------------------------------------------------------------------------------------
+document.getElementById works same as document.querySelector("#id"); 
+ye wide h querySelector isme class body kuch bhi daal skte h
+
+--------------------------------------------------------------------------------------------------
