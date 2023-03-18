@@ -20,3 +20,34 @@ document.getElementById works same as document.querySelector("#id");
 ye wide h querySelector isme class body kuch bhi daal skte h
 
 --------------------------------------------------------------------------------------------------
+
+in HTML  <button id="input-btn" onclick="saveLead()">
+
+function saveLead(){
+    console.log("clicked")
+}
+
+OR
+
+in HTML  <button id="input-btn">
+
+let inputBtn = document.getElementById("input-btn")
+
+inputBtn.addEventListener("click", function(){
+    console.log("clicked")
+})
+
+work same but syntax different
+
+--------------------------------------------------------------------------------------------------
+
+const is used when we dont want to reassig the variable 
+for eg in blackjack game
+const name = xyz
+let chips = $21
+
+chips can change but name wont
+
+--------------------------------------------------------------------------------------------------
+
+
