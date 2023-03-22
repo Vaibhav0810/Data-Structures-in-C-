@@ -50,4 +50,58 @@ chips can change but name wont
 
 --------------------------------------------------------------------------------------------------
 
+// Create Extension Code
+
+// In this we see How to use html tags inside js 
+
+let myLeads = []
+const inputEl = document.getElementById("input-el")
+const inputBtn = document.getElementById("input-btn")
+const ulEl = document.getElementById("ul-el")
+
+inputBtn.addEventListener("click", function() {
+    myLeads.push(inputEl.value)
+    renderLeads()
+    inputEl.value=""
+    myLeads=[]
+})
+
+// Let's try a different method!
+// for (let i = 0; i < myLeads.length; i++) {
+//    // ulEl.innerHTML += "<li>" + myLeads[i] + "</li>"
+//    // alternate way
+
+//    const li= document.createElement("li")
+//    li.textContent=myLeads[i]
+//    ulEl.append(li)
+
+// }
+ 
+// better way(faster)
+
+// let listItems = ""
+
+// for(let i=0;i<myLeads.length;i++){
+//     listItems+= "<li>" + myLeads[i] + "</li>"
+//     console.log(listItems) 
+// }
+
+// ulEl.innerHTML+= listItems 
+
+
+// now coding so that we can get leads in input
+
+function renderLeads(){
+    let listItems = ""
+
+    for(let i=0;i<myLeads.length;i++){
+        listItems+=  "<li> <a target = '_blank' href= '" + myLeads[i] + "'>" + myLeads[i] + "</a></li>" 
+
+    }
+
+    ulEl.innerHTML+= listItems 
+
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
