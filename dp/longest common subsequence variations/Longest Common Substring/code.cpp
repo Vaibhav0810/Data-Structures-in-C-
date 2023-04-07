@@ -1,28 +1,21 @@
-class Solution
-{
-    public:
-    //Function to find the length of longest common subsequence in two strings.
-    int lcs(int x, int y, string s1, string s2)
-    {
-        // your code here
+int recur(int n,int m, string s1, string s2){
         
-        int dp[x+1][y+1]={0};
-        for(int i=0;i<x+1;i++){
-            for(int j=0;j<y+1;j++){
-                if(i==0 || j==0) dp[i][j]=0;
-            }
-        }
+        if(n==0 || m==0) return 0;
         
-        for(int i=1;i<x+1;i++){
-            for(int j=1;j<y+1;j++){
-                if(s1[i-1]==s2[j-1]){
-                    dp[i][j]=dp[i-1][j-1]+1;
-                }
-                else{
-                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-                }
-            }
+        if(s1[n-1]==s2[m-1]){
+            return 1+recur(n-1,m-1,s1,s2);
         }
-        return dp[x][y];
+        else{
+            return 0;
+        }
+        return recur(n-1,m,s1,s2);
+            return recur(n,m-1,s1,s2);
+        
     }
     
+    int longestCommonSubstr (string S1, string S2, int n, int m)
+    {
+        
+        return recur(n,m,S1,S2);
+        
+    }
